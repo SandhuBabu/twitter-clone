@@ -6,7 +6,7 @@ import Auth from './components/Auth/Auth';
 function App() {
   return (
     <Routes>
-      <Route path='/' element={true?<HomePage /> : <Auth />}></Route>
+      <Route path="/*" element={true?<HomePage /> : <Auth />}></Route>
     </Routes>
   )
 }

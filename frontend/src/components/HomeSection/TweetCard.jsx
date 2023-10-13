@@ -52,7 +52,7 @@ const TweetCard = () => {
                     alt='username'
                     className='cursor-pointer'
                 />
-                <div className='w-full'>
+                <div onClick={() => navigate('/tweet/5')} className='w-full'>
                     <div className='flex justify-between items-center'>
                         <div className="flex cursor-pointer items-center space-x-2">
                             <span className='font-semibold'>Neha Sharma</span>
