@@ -10,13 +10,17 @@ import FileUploadIcon from '@mui/icons-material/FileUpload';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import ReplyModal from './ReplyModal';
 
 const TweetCard = () => {
 
     const navigate = useNavigate();
 
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const [openRetweet, setOpenRetweet] = React.useState(false);
+
     const open = Boolean(anchorEl);
+
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -30,9 +34,8 @@ const TweetCard = () => {
         handleClose();
     }
 
-    const handleOpenReply = () => {
-
-    }
+    const handleOpenReply = () => {setOpenRetweet(true)}
+    const handleCloseReply = () => {setOpenRetweet(false)}
 
     const handleRetweet = () => { }
 
@@ -52,7 +55,7 @@ const TweetCard = () => {
                     alt='username'
                     className='cursor-pointer'
                 />
-                <div onClick={() => navigate('/tweet/5')} className='w-full'>
+                <div className='w-full'>
                     <div className='flex justify-between items-center'>
                         <div className="flex cursor-pointer items-center space-x-2">
                             <span className='font-semibold'>Neha Sharma</span>
@@ -86,7 +89,7 @@ const TweetCard = () => {
                     </div>
 
                     <div className='mt-2'>
-                        <div className='cursor-pointer'>
+                        <div  onClick={() => navigate('/tweet/5')} className='cursor-pointer'>
                             <p>Green line issues in OnePlus Nord CE2</p>
                             <img
                                 className='w-[28rem] border border-gray-400 p-5 rounded-md'
@@ -143,6 +146,10 @@ const TweetCard = () => {
                     </div>
                 </div>
             </div>
+
+            <section>
+                <ReplyModal open={openRetweet} handleClose={handleCloseReply} />
+            </section>
         </div>
     )
 }

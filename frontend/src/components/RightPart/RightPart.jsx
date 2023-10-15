@@ -1,13 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import Brightness4OutlinedIcon from '@mui/icons-material/Brightness4Outlined';
 import { Button } from '@mui/material';
+import SubsciptionModal from '../SubscriptionModal/SubscriptionModal';
 
 const RightPart = () => {
 
-    const handleThemeChange = () => {
+    const [open, setOpen] = useState(false);
 
-    }
+    const handleThemeChange = () => {}
+    const handleModalOpen = () => setOpen(true)
+    const handleModalClose = () => setOpen(false)
+
+
     return (
         <div className='py-5 sticky top'>
             <div className='relative flex items-center'>
@@ -28,6 +33,7 @@ const RightPart = () => {
 
                 <Button
                     variant='contained'
+                    onClick={handleModalOpen}
                     sx={{
                         padding: '10px',
                         paddingX: '20px',
@@ -54,6 +60,9 @@ const RightPart = () => {
                         <span className='text-gray-500 ml-2'>12k likes</span>
                     </p>
                 </div>
+            </section>
+            <section>
+                <SubsciptionModal open={open} handleClose={handleModalClose} />
             </section>
         </div>
     )

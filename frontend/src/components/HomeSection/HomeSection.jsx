@@ -24,7 +24,8 @@ const HomeSection = () => {
     const formik = useFormik({
         initialValues: {
             content: "",
-            image: ""
+            image: "",
+            twitId: 4
         },
         onSubmit: handleSubmit,
         validationSchema
@@ -46,7 +47,7 @@ const HomeSection = () => {
 
             <section className='pb-10 '>
                 <div className='flex space-x-5'>
-                    <Avatar src='	https://1fid.com/wp-content/uploads/2022/06/girl-profile-picture-1024x1024.jpg' alt='username' />
+                    <Avatar src='https://1fid.com/wp-content/uploads/2022/06/girl-profile-picture-1024x1024.jpg' alt='username' />
                     <div className='w-full'>
                         <form onSubmit={formik.handleSubmit}>
                             <div>
@@ -93,7 +94,7 @@ const HomeSection = () => {
             </section>
 
             <section>
-                {[1,2,3,4].map(() =><TweetCard />)}
+                {[1,2,3,4].map((i) =><TweetCard key={i} />)}
             </section>
         </div>
     )
