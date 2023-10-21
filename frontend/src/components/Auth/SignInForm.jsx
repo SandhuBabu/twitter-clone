@@ -1,8 +1,10 @@
 import React from 'react'
-import { useFormik } from 'formik'
 import { Button, Grid, TextField } from '@mui/material'
+import { useFormik } from 'formik'
 import { object, string, } from 'yup'
 import { blue } from '@mui/material/colors'
+import { useDispatch } from 'react-redux'
+import {loginUser} from '../../Store/Auth/Action'
 
 
 const validationSchema = object({
@@ -12,17 +14,21 @@ const validationSchema = object({
 
 const SignInForm = () => {
 
+    const dispatch = useDispatch()
+
     const formik = useFormik({
         initialValues: {
             email: "",
             password: ""
         },
         validationSchema,
-        onSubmit: values => console.log('@FORMIK_VALUES' + values)
+        onSubmit: values => {
+            dispatch(loginUser(values))
+        }
     })
 
     return (
-        <form>
+        <form onSubmit={formik.handleSubmit}>
             <Grid container spacing={2}>
                 <Grid item xs={12}>
                     <TextField

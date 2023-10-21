@@ -32,7 +32,7 @@ const HomeSection = () => {
     })
 
     const handleSelectImage = (e) => {
-        setUploadingImage(true)
+        setUploadingImage(!uploadingImage)
         const imgUrl = e.target.files[0]
         formik.setFieldValue("image", imgUrl)
         setSelectedImg(imgUrl)

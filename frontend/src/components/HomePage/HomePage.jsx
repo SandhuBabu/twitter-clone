@@ -6,7 +6,6 @@ import RightPart from '../RightPart/RightPart'
 import { Route, Routes } from 'react-router-dom'
 import Profile from '../Profile/Profile'
 import Tweet from '../TweetDetails/Tweet'
-import Auth from '../Auth/Auth'
 
 const HomePage = () => {
     return (
@@ -19,7 +18,7 @@ const HomePage = () => {
             <Grid item xs={12} lg={6} className='hidden lg:block relative'>
 
                 <Routes>
-                    <Route path='/' element={<Auth />} />
+                    <Route path='/' element={<HomeSection />} />
                     <Route path='/home' element={<HomeSection />} />
                     <Route path='/profile/' element={<Profile />} />
                     <Route path='/tweet/:id' element={<Tweet />} />

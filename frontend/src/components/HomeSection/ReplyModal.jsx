@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
-import { Avatar, Menu, MenuItem } from '@mui/material';
+import { Avatar } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import ImageIcon from '@mui/icons-material/Image';
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
@@ -18,7 +18,6 @@ const style = {
     transform: 'translate(-50%, -50%)',
     width: 600,
     bgcolor: 'background.paper',
-    border: '2px solid #000',
     boxShadow: 24,
     p: 4,
     border: 'none',
@@ -52,7 +51,7 @@ function ReplyModal({handleClose, open}) {
     
 
     const handleSelectImage = (e) => {
-        setUploadingImage(true)
+        setUploadingImage(!uploadingImage)
         const imgUrl = e.target.files[0]
         formik.setFieldValue("image", imgUrl)
         setSelectedImg(imgUrl)

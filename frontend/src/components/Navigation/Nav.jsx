@@ -5,19 +5,28 @@ import { Avatar, Button } from '@mui/material';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../../Store/Auth/Action';
 
 const Nav = () => {
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
-   
+    const auth = useSelector(store => store.auth)
+
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
 
     const handleClose = () => {
         setAnchorEl(null);
+    };
+   
+    const handleLogout = () => {
+        dispatch(logout());
     };
 
     return (
@@ -62,8 +71,8 @@ const Nav = () => {
                     <Avatar alt='username' src='https://1fid.com/wp-content/uploads/2022/06/girl-profile-picture-1024x1024.jpg' />
                 </div>
                 <div>
-                    <p>Neha Sharma</p>
-                    <span className='opacity-70'>@nehasharma</span>
+                    <p>{auth?.user?.fullName}</p>
+                    <span className='opacity-70'>@{auth?.user?.fullName.toLowerCase().replace(' ', '_')}</span>
                 </div>
                 <div>
                     <Button
@@ -85,7 +94,7 @@ const Nav = () => {
                             'aria-labelledby': 'basic-button',
                         }}
                     >
-                        <MenuItem onClick={handleClose}>Logout</MenuItem>
+                        <MenuItem onClick={handleLogout}>Logout</MenuItem>
                     </Menu>
                 </div>
 

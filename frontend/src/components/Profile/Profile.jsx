@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
-import { Avatar, Box, Button, Tab, Tabs } from '@mui/material';
+import { Avatar, Box, Button, Tab } from '@mui/material';
 import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
@@ -44,7 +44,7 @@ const Profile = () => {
                 <img
                     src="https://2.bp.blogspot.com/-mIBnH7Yu8t8/T44dEX94J2I/AAAAAAAAEXE/Vzn-4Obtjis/s1600/Love+Facebook+Covers.png"
                     className='w-[100%] h-[15rem] object-cover rounded-md'
-                    alt="image"
+                    alt="user-profile"
                 />
             </section>
 

@@ -13,7 +13,6 @@ const style = {
     transform: 'translate(-50%, -50%)',
     width: 600,
     bgcolor: 'background.paper',
-    border: '2px solid #000',
     boxShadow: 24,
     p: 4,
     outline: 'none',
@@ -30,7 +29,7 @@ function ProfileModal({open, handleClose}) {
      }
 
     const handleBgImageChange = (e) => {
-        setUploading(true);
+        setUploading(!uploading);
         const { name } = e.target
         const file = e.target.files[0]
         formik.setFieldValue(name, file)
@@ -82,7 +81,7 @@ function ProfileModal({open, handleClose}) {
                                         <img
                                             src="https://2.bp.blogspot.com/-mIBnH7Yu8t8/T44dEX94J2I/AAAAAAAAEXE/Vzn-4Obtjis/s1600/Love+Facebook+Covers.png"
                                             className='w-[100%] h-[12rem] object-cover rounded-md'
-                                            alt="image"
+                                            alt="user"
                                         />
                                         <input
                                             type="file"
