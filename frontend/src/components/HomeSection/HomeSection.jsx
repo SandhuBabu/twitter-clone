@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { object, string, } from 'yup'
 import { useFormik } from 'formik'
 import { Avatar, Button } from '@mui/material'
@@ -6,6 +6,8 @@ import ImageIcon from '@mui/icons-material/Image';
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
 import TagFacesIcon from '@mui/icons-material/TagFaces';
 import TweetCard from './TweetCard';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllTweets } from '../../Store/Twit/Action';
 
 
 const validationSchema = object({
@@ -16,6 +18,14 @@ const HomeSection = () => {
 
     const [uploadingImage, setUploadingImage] = useState(false)
     const [selectedImg, setSelectedImg] = useState(null);
+    const dispatch = useDispatch();
+    const {twit} = useSelector(store => store)
+
+    console.log("@TWITS_AT_HOME_SECTION", twit);
+
+    useEffect(() => {
+        dispatch(getAllTweets())
+    }, [])
 
     const handleSubmit = values => {
         console.log("@values" + values);
@@ -94,7 +104,7 @@ const HomeSection = () => {
             </section>
 
             <section>
-                {[1,2,3,4].map((i) =><TweetCard key={i} />)}
+                {twit?.twits?.map((item, i) => <TweetCard twit={item} key={i} />)}
             </section>
         </div>
     )

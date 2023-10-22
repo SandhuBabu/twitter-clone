@@ -12,7 +12,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import ReplyModal from './ReplyModal';
 
-const TweetCard = () => {
+const TweetCard = ({twit}) => {
 
     const navigate = useNavigate();
 
