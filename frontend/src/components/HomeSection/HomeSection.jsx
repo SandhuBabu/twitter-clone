@@ -21,7 +21,7 @@ const HomeSection = () => {
     const dispatch = useDispatch();
     const {twit} = useSelector(store => store)
 
-    console.log("@TWITS_AT_HOME_SECTION", twit);
+    console.log("@TWITS_AT_HOME_SECTION", twit.twits);
 
     useEffect(() => {
         dispatch(getAllTweets())

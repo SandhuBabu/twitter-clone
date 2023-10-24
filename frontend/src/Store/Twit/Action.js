@@ -24,7 +24,7 @@ import {
 export const getAllTweets = () => async (dispatch) => {
     try {
         const {data} = await api.get("/api/twits")
-        console.log("@ALL_TWEETS", data);
+        console.log("@ALL_TWEETS(change_in_reducer_line_71)", data);
         dispatch({type: GET_ALL_TWEETS_SUCCESS, payload: data})
     } catch (err) {
         console.log("@ALL_TWEETS_ERROR", err);

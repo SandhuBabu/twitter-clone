@@ -11,6 +11,8 @@ import BarChartIcon from '@mui/icons-material/BarChart';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import ReplyModal from './ReplyModal';
+import { useDispatch } from 'react-redux';
+import { likeTweet } from '../../Store/Twit/Action';
 
 const TweetCard = ({twit}) => {
 
@@ -19,6 +21,7 @@ const TweetCard = ({twit}) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [openRetweet, setOpenRetweet] = React.useState(false);
 
+    const dispatch = useDispatch();
     const open = Boolean(anchorEl);
 
 
@@ -39,15 +42,12 @@ const TweetCard = ({twit}) => {
 
     const handleRetweet = () => { }
 
-    const handleLike = () => {}
+    const handleLike = () => {
+        dispatch(likeTweet(twit?.id))
+    }
 
     return (
         <div className=''>
-            {/* <div className='flex items-center font-semibold text-gray-700 py-2'>
-                <RepeatOnIcon />
-                <p>You Retweet</p>
-            </div> */}
-
             <div className='flex space-x-5'>
                 <Avatar
                     onClick={() => navigate("/profile/user")}
@@ -58,8 +58,8 @@ const TweetCard = ({twit}) => {
                 <div className='w-full'>
                     <div className='flex justify-between items-center'>
                         <div className="flex cursor-pointer items-center space-x-2">
-                            <span className='font-semibold'>Neha Sharma</span>
-                            <span className='text-gray-600'>@nehsharma .2m</span>
+                            <span className='font-semibold'>{twit?.user?.fullName}</span>
+                            <span className='text-gray-600'>@{twit?.user?.fullName.replace(' ', '_').toLowerCase()} .2m</span>
                             <img width='25px' src="https://cdn-icons-png.flaticon.com/512/7641/7641727.png" alt="verified account" />
                         </div>
                         <div>
@@ -90,32 +90,32 @@ const TweetCard = ({twit}) => {
 
                     <div className='mt-2'>
                         <div  onClick={() => navigate('/tweet/5')} className='cursor-pointer'>
-                            <p>Green line issues in OnePlus Nord CE2</p>
+                            <p>{twit?.content}</p>
                             <img
                                 className='w-[28rem] border border-gray-400 p-5 rounded-md'
-                                src="https://techibee.in/wp-content/uploads/2023/03/oneplus-11r-pink-line-problem.jpg"
+                                src={twit?.image}
                                 alt=""
                             />
                         </div>
                         <div className='py-5 flex flex-wrap justify-between items-center w-[28em]'>
                             <div className='space-x-3 flex items-center text-gray-600'>
                                 <ChatBubbleOutlineIcon className='cursor-pointer' onClick={handleOpenReply} />
-                                <p>43</p>
+                                <p>{twit?.totalReplies}</p>
                             </div>
 
-                            <div className={`${true ? "text-pink-600" : "text-gray-600"}`}>
+                            <div className={`${twit?.retwit ? "text-pink-600" : "text-gray-600"}`}>
                                 <RepeatOnIcon
                                     onClick={handleRetweet}
                                     className='cursor-pointer'
                                 />
-                                <p>54</p>
+                                <p>{twit?.totalRetweets}</p>
                             </div>
 
-                            <div className={`${true ? "text-pink-600" : "text-gray-600"}`}>
+                            <div className={`${twit?.liked ? "text-pink-600" : "text-gray-600"}`}>
                                 {
-                                    true ?
+                                    twit?.liked ?
                                         <FavoriteIcon
-                                            onClick={handleRetweet}
+                                            onClick={handleLike}
                                             className='cursor-pointer'
                                         /> 
                                         :
@@ -124,7 +124,7 @@ const TweetCard = ({twit}) => {
                                             className='cursor-pointer'
                                         />
                                 }
-                                <p>54</p>
+                                <p>{twit?.totalLikes}</p>
                             </div>
 
                             <div className='space-x-3 flex items-center text-gray-600'>

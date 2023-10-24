@@ -68,6 +68,7 @@ export const tweetReducer = (state = initialState, action) => {
                 loading: false,
                 error: null,
                 twits: [action.payload, ...state.twits]
+                // twits: [...action.payload]
             }
 
         case USER_LIKE_TWEET_SUCCESS:
